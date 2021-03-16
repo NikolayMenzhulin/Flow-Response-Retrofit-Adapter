@@ -1,0 +1,20 @@
+buildscript {
+    apply {
+        from 'config.gradle'
+    }
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$gradle_v"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_v"
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        google()
+    }
+}

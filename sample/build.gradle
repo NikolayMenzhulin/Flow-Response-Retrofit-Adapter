@@ -1,0 +1,32 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+apply {
+    from 'config.gradle'
+}
+
+android {
+    defaultConfig {
+        versionName version_name
+        versionCode version_code
+        applicationId application_id
+
+        buildToolsVersion build_tools_v
+        compileSdkVersion compile_sdk_v
+        minSdkVersion min_sdk_v
+        targetSdkVersion target_sdk_v
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation project(':adapter')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_v"
+    implementation "androidx.appcompat:appcompat:$appcompat_v"
+    implementation "androidx.core:core-ktx:$core_ktx_v"
+}
