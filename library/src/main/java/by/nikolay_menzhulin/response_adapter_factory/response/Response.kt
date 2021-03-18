@@ -68,9 +68,3 @@ sealed class Response<out T> {
      */
     fun getErrorOrNull(): Throwable? = (this as? Error)?.error
 }
-
-/**
- * Псевдоним для использования с запросами, ответ на которые не содержит данных,
- * либо данные есть, но не требуются и их можно проигнорировать.
- */
-typealias EmptyResponse = Response<Nothing>
