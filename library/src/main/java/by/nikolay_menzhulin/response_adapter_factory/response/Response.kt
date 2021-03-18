@@ -1,4 +1,4 @@
-package by.nikolay_menzhulin.response
+package by.nikolay_menzhulin.response_adapter_factory.response
 
 /**
  * Абстрактная модель ответа от сервера.

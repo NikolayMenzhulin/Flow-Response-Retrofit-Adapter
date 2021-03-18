@@ -1,4 +1,3 @@
 rootProject.name = 'Retrofit Response Adapter'
-include ':response'
-include ':adapter'
+include ':library'
 include ':sample'

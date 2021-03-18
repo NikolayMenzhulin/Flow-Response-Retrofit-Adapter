@@ -1,6 +1,6 @@
 package by.nikolay_menzhulin.sample
 
-import by.nikolay_menzhulin.adapter.ResponseCallAdapterFactory
+import by.nikolay_menzhulin.response_adapter_factory.adapter.ResponseCallAdapterFactory
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

@@ -1,6 +1,6 @@
-package by.nikolay_menzhulin.adapter.call
+package by.nikolay_menzhulin.response_adapter_factory.adapter.call
 
-import by.nikolay_menzhulin.response.Response
+import by.nikolay_menzhulin.response_adapter_factory.response.Response
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.HttpException

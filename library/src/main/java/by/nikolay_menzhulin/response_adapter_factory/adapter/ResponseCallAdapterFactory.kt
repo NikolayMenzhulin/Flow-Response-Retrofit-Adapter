@@ -1,7 +1,7 @@
-package by.nikolay_menzhulin.adapter
+package by.nikolay_menzhulin.response_adapter_factory.adapter
 
-import by.nikolay_menzhulin.adapter.call.ResponseCall
-import by.nikolay_menzhulin.response.Response
+import by.nikolay_menzhulin.response_adapter_factory.adapter.call.ResponseCall
+import by.nikolay_menzhulin.response_adapter_factory.response.Response
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.Retrofit

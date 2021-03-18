@@ -4,6 +4,5 @@ plugins {
 }
 
 dependencies {
-    api project(':response')
     implementation "com.squareup.retrofit2:retrofit:$retrofit_v"
 }
