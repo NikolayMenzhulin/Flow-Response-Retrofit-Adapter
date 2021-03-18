@@ -10,7 +10,14 @@ ext {
     min_sdk_v = 14
     target_sdk_v = 29
 
+    // Compile options
+    java_source_сompatibility_v = JavaVersion.VERSION_1_8
+    java_target_сompatibility_v = JavaVersion.VERSION_1_8
+    kotlin_jvm_target_v = JavaVersion.VERSION_1_8.toString()
+
     // Dependencies
     appcompat_v = "1.2.0"
     core_ktx_v = "1.3.2"
+    lifecycle_runtime_ktx = "2.3.0"
+    gson_v = "2.8.6"
 }

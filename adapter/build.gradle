@@ -3,10 +3,7 @@ plugins {
     id 'java-library'
 }
 
-apply {
-    from 'config.gradle'
-}
-
 dependencies {
+    api project(':response')
     implementation "com.squareup.retrofit2:retrofit:$retrofit_v"
 }

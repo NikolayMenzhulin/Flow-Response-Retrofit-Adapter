@@ -1,4 +1,8 @@
 ext {
+    // Library configuration
     kotlin_v = '1.4.10'
     gradle_v = '3.6.4'
+
+    // Dependencies
+    retrofit_v = '2.9.0'
 }
