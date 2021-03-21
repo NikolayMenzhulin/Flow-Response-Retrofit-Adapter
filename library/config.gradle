@@ -1,3 +1,7 @@
 ext {
+    // Dependencies
     coroutines_core_v = "1.4.3"
+
+    // Test dependencies
+    junit_v = "5.7.1"
 }

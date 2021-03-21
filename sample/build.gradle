@@ -36,4 +36,5 @@ dependencies {
     implementation "com.google.code.gson:gson:$gson_v"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_v"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_v"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_v"
 }

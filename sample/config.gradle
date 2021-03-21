@@ -13,7 +13,6 @@ ext {
     // Compile options
     java_source_сompatibility_v = JavaVersion.VERSION_1_8
     java_target_сompatibility_v = JavaVersion.VERSION_1_8
-    kotlin_jvm_target_v = JavaVersion.VERSION_1_8.toString()
 
     // Dependencies
     appcompat_v = "1.2.0"

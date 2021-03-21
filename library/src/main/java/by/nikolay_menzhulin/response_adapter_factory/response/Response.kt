@@ -51,7 +51,12 @@ sealed class Response<out T> {
     /**
      * @return данные из ответа от сервера или exception, если запрос выполнился неуспешно, либо данные отсутствуют.
      */
-    fun getData(): T = (this as Success).data
+    fun getData(): T =
+        try {
+            (this as Success).data
+        } catch (e: ClassCastException) {
+            throw IllegalStateException("Response without data")
+        }
 
     /**
      * @return данные из ответа от сервера или null, если запрос выполнился неуспешно, либо данные отсутствуют.
@@ -61,7 +66,12 @@ sealed class Response<out T> {
     /**
      * @return ошибка, полученная при загрузке данных или exception, если запрос выполнился успешно и ошибка отсутствует.
      */
-    fun getError(): Throwable = (this as Error).error
+    fun getError(): Throwable =
+        try {
+            (this as Error).error
+        } catch (e: ClassCastException) {
+            throw IllegalStateException("Response without error")
+        }
 
     /**
      * @return ошибка, полученная при загрузке данных или null, если запрос выполнился успешно и ошибка отсутствует.
