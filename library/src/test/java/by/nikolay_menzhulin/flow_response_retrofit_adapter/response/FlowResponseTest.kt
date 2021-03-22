@@ -1,9 +1,9 @@
-package by.nikolay_menzhulin.response_adapter_factory.response
+package by.nikolay_menzhulin.flow_response_retrofit_adapter.response
 
-import by.nikolay_menzhulin.response_adapter_factory.adapter.ResponseCallAdapterFactory
-import by.nikolay_menzhulin.response_adapter_factory.network.TestService
-import by.nikolay_menzhulin.response_adapter_factory.network.response.TestResponse
-import by.nikolay_menzhulin.response_adapter_factory.network.server.enqueueResponse
+import by.nikolay_menzhulin.flow_response_retrofit_adapter.adapter.ResponseCallAdapterFactory
+import by.nikolay_menzhulin.flow_response_retrofit_adapter.network.TestService
+import by.nikolay_menzhulin.flow_response_retrofit_adapter.network.response.TestResponse
+import by.nikolay_menzhulin.flow_response_retrofit_adapter.network.server.enqueueResponse
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockWebServer

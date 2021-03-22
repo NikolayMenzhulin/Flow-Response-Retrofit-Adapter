@@ -1,7 +1,7 @@
-package by.nikolay_menzhulin.response_adapter_factory.adapter
+package by.nikolay_menzhulin.flow_response_retrofit_adapter.adapter
 
-import by.nikolay_menzhulin.response_adapter_factory.response.FlowResponse
-import by.nikolay_menzhulin.response_adapter_factory.response.Response
+import by.nikolay_menzhulin.flow_response_retrofit_adapter.response.FlowResponse
+import by.nikolay_menzhulin.flow_response_retrofit_adapter.response.Response
 import retrofit2.*
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type

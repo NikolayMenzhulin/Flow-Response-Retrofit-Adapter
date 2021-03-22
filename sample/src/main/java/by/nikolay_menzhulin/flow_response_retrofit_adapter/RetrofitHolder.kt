@@ -1,6 +1,6 @@
-package by.nikolay_menzhulin.sample
+package by.nikolay_menzhulin.flow_response_retrofit_adapter
 
-import by.nikolay_menzhulin.response_adapter_factory.adapter.ResponseCallAdapterFactory
+import by.nikolay_menzhulin.flow_response_retrofit_adapter.adapter.ResponseCallAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

@@ -1,4 +1,4 @@
-package by.nikolay_menzhulin.sample.service.response
+package by.nikolay_menzhulin.flow_response_retrofit_adapter.service.response
 
 import com.google.gson.annotations.SerializedName
 

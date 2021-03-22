@@ -1,8 +1,8 @@
-package by.nikolay_menzhulin.response_adapter_factory.adapter
+package by.nikolay_menzhulin.flow_response_retrofit_adapter.adapter
 
-import by.nikolay_menzhulin.response_adapter_factory.network.response.TestResponse
-import by.nikolay_menzhulin.response_adapter_factory.response.FlowEmptyResponse
-import by.nikolay_menzhulin.response_adapter_factory.response.FlowResponse
+import by.nikolay_menzhulin.flow_response_retrofit_adapter.network.response.TestResponse
+import by.nikolay_menzhulin.flow_response_retrofit_adapter.response.FlowEmptyResponse
+import by.nikolay_menzhulin.flow_response_retrofit_adapter.response.FlowResponse
 import com.google.gson.reflect.TypeToken
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.jupiter.api.Assertions.*

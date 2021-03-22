@@ -1,4 +1,4 @@
-package by.nikolay_menzhulin.response_adapter_factory.network.response
+package by.nikolay_menzhulin.flow_response_retrofit_adapter.network.response
 
 import com.google.gson.annotations.SerializedName
 

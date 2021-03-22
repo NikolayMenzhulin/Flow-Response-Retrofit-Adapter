@@ -1,4 +1,4 @@
-package by.nikolay_menzhulin.response_adapter_factory.network.server
+package by.nikolay_menzhulin.flow_response_retrofit_adapter.network.server
 
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer

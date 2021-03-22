@@ -1,4 +1,4 @@
-package by.nikolay_menzhulin.sample.ui
+package by.nikolay_menzhulin.flow_response_retrofit_adapter.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -7,8 +7,8 @@ import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import by.nikolay_menzhulin.sample.R
-import by.nikolay_menzhulin.sample.service.GitHubRepository
+import by.nikolay_menzhulin.flow_response_retrofit_adapter.R
+import by.nikolay_menzhulin.flow_response_retrofit_adapter.service.GitHubRepository
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
