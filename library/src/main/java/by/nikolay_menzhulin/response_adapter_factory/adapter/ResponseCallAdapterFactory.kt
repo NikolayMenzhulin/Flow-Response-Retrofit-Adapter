@@ -31,6 +31,7 @@ private class ResponseCallAdapter<T>(private val type: Type) : CallAdapter<T, Fl
 
     override fun adapt(call: Call<T>): FlowResponse<T> {
         val flowResponse: FlowResponse<T> = FlowResponse()
+        flowResponse.responseState.tryEmit(Response.Loading)
         call.enqueue(FlowResponseCallback(flowResponse))
         return flowResponse
     }

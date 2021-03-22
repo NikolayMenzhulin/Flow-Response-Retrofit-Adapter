@@ -2,18 +2,18 @@ package by.nikolay_menzhulin.response_adapter_factory.response
 
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.FlowCollector
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.take
 
 /**
- * StateFlow-обёртка над состоянием ответа от сервера.
+ * SharedFlow-обёртка над состоянием ответа от сервера.
  *
- * @property responseState изменяемый StateFlow с состоянием ответа от сервера.
+ * @property responseState изменяемый SharedFlow с состоянием ответа от сервера.
  */
 data class FlowResponse<T>(
-    internal val responseState: MutableStateFlow<Response<T>> = MutableStateFlow(Response.Loading),
-) : StateFlow<Response<T>> by responseState {
+    internal val responseState: MutableSharedFlow<Response<T>> = MutableSharedFlow(replay = 2),
+) : SharedFlow<Response<T>> by responseState {
 
     @InternalCoroutinesApi
     override suspend fun collect(collector: FlowCollector<Response<T>>) {

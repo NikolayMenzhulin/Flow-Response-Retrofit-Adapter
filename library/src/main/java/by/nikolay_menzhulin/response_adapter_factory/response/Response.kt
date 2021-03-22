@@ -28,7 +28,7 @@ sealed class Response<out T> {
      *
      * @param error ошибка, полученная при загрузке данных
      */
-    data class Error<T>(internal val error: Throwable) : Response<T>()
+    data class Error(internal val error: Throwable) : Response<Nothing>()
 
     /**
      * Выполняется ли запрос в данный момент?
