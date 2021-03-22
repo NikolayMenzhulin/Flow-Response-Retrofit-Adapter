@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="by.nikolay_menzhulin.flow_response_retrofit_adapter">
+    package="com.github.nikolaymenzhulin.flow_response_retrofit_adapter">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -15,7 +15,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,UnusedAttribute">
 
-        <activity android:name="by.nikolay_menzhulin.flow_response_retrofit_adapter.ui.MainActivity">
+        <activity android:name="com.github.nikolaymenzhulin.flow_response_retrofit_adapter.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
