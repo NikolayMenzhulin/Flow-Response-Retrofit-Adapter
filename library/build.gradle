@@ -27,6 +27,5 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junit_v"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit_v"
     testImplementation "com.squareup.okhttp3:mockwebserver:$okhttp_v"
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_core_v"
     testImplementation "com.squareup.retrofit2:converter-gson:$retrofit_v"
 }

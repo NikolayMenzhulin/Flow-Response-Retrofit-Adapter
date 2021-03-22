@@ -29,7 +29,6 @@ android {
 
 dependencies {
     implementation project(':library')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_v"
     implementation "androidx.appcompat:appcompat:$appcompat_v"
     implementation "androidx.core:core-ktx:$core_ktx_v"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_runtime_ktx"
