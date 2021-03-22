@@ -20,12 +20,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 import java.io.IOException
 
-internal class FlowResponseTest {
+class FlowResponseTest {
 
     private companion object {
 
-        const val RESPONSE_JSON = """{"mockString":"Test","mockInt":1234,"mockBoolean":true}"""
-        const val EMPTY_RESPONSE_JSON = """{}"""
+        const val SUCCESS_RESPONSE_JSON = """{"mockString":"Test","mockInt":1234,"mockBoolean":true}"""
         const val ERROR_RESPONSE_JSON = """{"error":"Some server error message"}"""
     }
 
@@ -54,17 +53,17 @@ internal class FlowResponseTest {
     fun `Check response states count is always 2`() {
 
         fun checkSuccessResponseWithResult() {
-            val responseStates = getResponseStates(responseCode = 200, responseBody = RESPONSE_JSON)
+            val responseStates = getResponseStates(responseCode = 200, responseBody = SUCCESS_RESPONSE_JSON)
             assertEquals(2, responseStates.size)
         }
 
         fun checkSuccessResponseWithoutResult() {
-            val responseStates = getResponseStates(responseCode = 200, responseBody = EMPTY_RESPONSE_JSON)
+            val responseStates = getResponseStates(responseCode = 204)
             assertEquals(2, responseStates.size)
         }
 
         fun checkErrorResponse() {
-            val responseStates = getResponseStates(responseCode = 500, responseBody = RESPONSE_JSON)
+            val responseStates = getResponseStates(responseCode = 500, responseBody = SUCCESS_RESPONSE_JSON)
             assertEquals(2, responseStates.size)
         }
 
@@ -75,7 +74,7 @@ internal class FlowResponseTest {
 
     @Test
     fun `Check first response state is Loading`() {
-        val responseStates = getResponseStates(responseCode = 200, responseBody = RESPONSE_JSON)
+        val responseStates = getResponseStates(responseCode = 200, responseBody = SUCCESS_RESPONSE_JSON)
         assertTrue { responseStates[0].isLoading }
     }
 
@@ -83,17 +82,17 @@ internal class FlowResponseTest {
     fun `Check second response state is Success or Error`() {
 
         fun checkSuccessResponseWithResult() {
-            val responseStates = getResponseStates(responseCode = 200, responseBody = RESPONSE_JSON)
+            val responseStates = getResponseStates(responseCode = 200, responseBody = SUCCESS_RESPONSE_JSON)
             assertTrue { responseStates[1].isSuccess }
         }
 
         fun checkSuccessResponseWithoutResult() {
-            val responseStates = getResponseStates(responseCode = 200, responseBody = EMPTY_RESPONSE_JSON)
+            val responseStates = getResponseStates(responseCode = 204)
             assertTrue { responseStates[1].isSuccess }
         }
 
         fun checkErrorResponse() {
-            val responseStates = getResponseStates(responseCode = 500, responseBody = RESPONSE_JSON)
+            val responseStates = getResponseStates(responseCode = 500, responseBody = SUCCESS_RESPONSE_JSON)
             assertTrue { responseStates[1].isError }
         }
 
@@ -104,14 +103,14 @@ internal class FlowResponseTest {
 
     @Test
     fun `Check success response result was got`() {
-        val responseStates = getResponseStates(responseCode = 200, responseBody = RESPONSE_JSON)
+        val responseStates = getResponseStates(responseCode = 200, responseBody = SUCCESS_RESPONSE_JSON)
         val actualResponse: TestResponse = responseStates[1].getData()
         assertEquals(expectedResponse, actualResponse)
     }
 
     @Test
     fun `Check success empty response result wasn't got`() {
-        val responseStates = getResponseStates(responseCode = 200, responseBody = EMPTY_RESPONSE_JSON)
+        val responseStates = getResponseStates(responseCode = 204)
         assertThrows<IllegalStateException> { responseStates[1].getData() }
         assertNull(responseStates[1].getDataOrNull())
     }
@@ -125,7 +124,7 @@ internal class FlowResponseTest {
 
     @Test
     fun `Check success response error wasn't got`() {
-        val responseStates = getResponseStates(responseCode = 200, responseBody = RESPONSE_JSON)
+        val responseStates = getResponseStates(responseCode = 200, responseBody = SUCCESS_RESPONSE_JSON)
         assertThrows<IllegalStateException> { responseStates[1].getError() }
         assertNull(responseStates[1].getErrorOrNull())
     }
@@ -134,7 +133,7 @@ internal class FlowResponseTest {
     fun `Check error was got when connection problem`() {
         val responseStates = getResponseStates(
             responseCode = 200,
-            responseBody = RESPONSE_JSON,
+            responseBody = SUCCESS_RESPONSE_JSON,
             socketPolicy = DISCONNECT_AFTER_REQUEST
         )
         val error: Throwable = responseStates[1].getError()
@@ -143,14 +142,14 @@ internal class FlowResponseTest {
 
     private fun getResponseStates(
         responseCode: Int,
-        responseBody: String,
+        responseBody: String? = null,
         socketPolicy: SocketPolicy? = null
     ): List<Response<TestResponse>> {
         server.enqueueResponse(responseCode, responseBody, socketPolicy)
         return runBlocking {
             val responseStates: MutableList<Response<TestResponse>> = mutableListOf()
             testService.run {
-                if (responseBody == EMPTY_RESPONSE_JSON) {
+                if (responseBody == null) {
                     responseWithoutData()
                 } else {
                     responseWithData()

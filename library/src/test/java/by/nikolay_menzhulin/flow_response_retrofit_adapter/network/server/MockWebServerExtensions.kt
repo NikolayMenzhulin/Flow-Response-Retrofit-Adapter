@@ -7,14 +7,13 @@ import java.util.concurrent.TimeUnit.MILLISECONDS
 
 fun MockWebServer.enqueueResponse(
     responseCode: Int,
-    responseBody: String,
+    responseBody: String? = null,
     socketPolicy: SocketPolicy? = null
 ) {
     MockResponse()
         .setResponseCode(responseCode)
-        .setBody(responseBody)
         .setBodyDelay(delay = 300, unit = MILLISECONDS)
-        .apply { if (responseCode == 204) addHeader("Content-Length", "") }
+        .apply { responseBody?.let { setBody(it) } }
         .apply { socketPolicy?.let { setSocketPolicy(it) } }
         .also { enqueue(it) }
 }
