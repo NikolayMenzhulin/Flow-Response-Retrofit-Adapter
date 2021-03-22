@@ -1,0 +1,31 @@
+plugins {
+    id 'kotlin'
+    id 'java-library'
+}
+
+apply {
+    from 'config.gradle'
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = kotlin_jvm_target_v
+    }
+}
+
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = kotlin_jvm_target_v
+    }
+}
+
+dependencies {
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_v"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_v"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_core_v"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junit_v"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit_v"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$okhttp_v"
+    testImplementation "com.squareup.retrofit2:converter-gson:$retrofit_v"
+}

@@ -19,14 +19,22 @@ android {
         targetSdkVersion target_sdk_v
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility java_source_сompatibility_v
+        targetCompatibility java_target_сompatibility_v
+    }
+    kotlinOptions {
+        jvmTarget = kotlin_jvm_target_v
     }
 }
 
 dependencies {
-    implementation project(':adapter')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_v"
+    implementation project(':library')
     implementation "androidx.appcompat:appcompat:$appcompat_v"
     implementation "androidx.core:core-ktx:$core_ktx_v"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_runtime_ktx"
+    implementation "com.google.code.gson:gson:$gson_v"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_v"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_v"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_v"
+    implementation "com.squareup.okhttp3:mockwebserver:$okhttp_v"
 }

@@ -1,8 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:text="Hello World!"
-    tools:context=".MainActivity" />
+    android:orientation="vertical"
+    tools:context=".ui.MainActivity">
+
+    <Button
+        android:id="@+id/success_response_with_result_btn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        android:text="Success 200 response"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/success_response_without_result_btn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        android:text="Success 204 response"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/error_response_btn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        android:text="Error response"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/cancel_request_btn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Cancel request"
+        tools:ignore="HardcodedText" />
+
+</LinearLayout>
