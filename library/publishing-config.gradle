@@ -1,0 +1,21 @@
+ext {
+    // Artifact configuration
+    group_id = 'com.github.nikolaymenzhulin'
+    artifact_id = 'flow-response-retrofit-adapter'
+    library_version = '1.0.0'
+
+    // POM configuration
+    library_name = 'Flow Response Retrofit Adapter'
+    library_description = 'A small library containing a wrapper over network requests implemented using Kotlin Coroutines Flow and an adapter that allows this wrapper to be used along with the Retrofit 2 library.'
+    library_url = 'https://github.com/NikolayMenzhulin/Flow-Response-Retrofit-Adapter'
+
+    using_license_name = 'The Apache License, Version 2.0'
+    using_license_url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+
+    developer_name = 'Nikolay Menzhulin'
+    developer_email = 'NikolayMenzhulin@gmail.com'
+
+    scm_connection = 'scm:https://github.com/NikolayMenzhulin/Flow-Response-Retrofit-Adapter.git'
+    scm_developer_connection = 'scm:git://github.com:NikolayMenzhulin/Flow-Response-Retrofit-Adapter.git'
+    scm_url = 'https://github.com/NikolayMenzhulin/Flow-Response-Retrofit-Adapter'
+}

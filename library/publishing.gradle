@@ -43,10 +43,10 @@ publishing {
     }
     repositories {
         maven {
-            url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            url = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
             credentials {
-                username = sonatype_username
-                password = sonatype_password
+                username = findProperty('sonatype_username')
+                password = findProperty('sonatype_password')
             }
         }
     }
