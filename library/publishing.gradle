@@ -1,0 +1,57 @@
+apply plugin: ('maven-publish')
+apply plugin: ('signing')
+
+apply from: ('publishing-config.gradle')
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            pom {
+                groupId = group_id
+                artifactId = artifact_id
+                version = library_version
+
+                name = library_name
+                description = library_description
+                url = library_url
+
+                licenses {
+                    license {
+                        name = using_license_name
+                        url = using_license_url
+                    }
+                }
+                developers {
+                    developer {
+                        name = developer_name
+                        email = developer_email
+                    }
+                }
+                scm {
+                    connection = scm_connection
+                    developerConnection = scm_developer_connection
+                    url = scm_url
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            credentials {
+                username = sonatype_username
+                password = sonatype_password
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}

@@ -1,11 +1,8 @@
-plugins {
-    id 'kotlin'
-    id 'java-library'
-}
+apply plugin: ('kotlin')
+apply plugin: ('java-library')
 
-apply {
-    from 'config.gradle'
-}
+apply from: ('config.gradle')
+apply from: ('publishing.gradle')
 
 compileKotlin {
     kotlinOptions {
