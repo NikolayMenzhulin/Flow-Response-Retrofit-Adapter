@@ -22,9 +22,9 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.take
 
 /**
- * SharedFlow-обёртка над состоянием ответа от сервера.
+ * [SharedFlow] wrapper for [Response].
  *
- * @property responseState изменяемый SharedFlow с состоянием ответа от сервера.
+ * @param responseState [MutableSharedFlow] with response state
  */
 data class FlowResponse<T>(
     internal val responseState: MutableSharedFlow<Response<T>> = MutableSharedFlow(replay = 2),
@@ -37,7 +37,6 @@ data class FlowResponse<T>(
 }
 
 /**
- * Псевдоним для использования с запросами, ответ на которые не содержит данных,
- * либо данные есть, но не требуются и их можно проигнорировать.
+ * Alias for requests that not contain data or contain, but they isn't necessary and might be ignored.
  */
 typealias FlowEmptyResponse = FlowResponse<Nothing>

@@ -16,55 +16,55 @@
 package com.github.nikolaymenzhulin.flow_response_retrofit_adapter.response
 
 /**
- * Абстрактная модель ответа от сервера.
+ * Abstract model of server's response.
  */
 sealed class Response<out T> {
 
     /**
-     * Загрузка данных.
-     * Получение данных начинается с этого состояния.
+     * Data loading.
+     * Data receiving starts from this state.
      */
     object Loading : Response<Nothing>()
 
     /**
-     * Успешный ответ от сервера и отсутствие каких-либо данных в нём.
+     * Successful response from server without data.
      */
     object Empty : Response<Nothing>()
 
     /**
-     * Успешный ответ от сервера с данными в нём.
+     * Successful response from server with data.
      *
-     * @param data данные, полученные в ответе
+     * @param data data from response
      */
     data class Success<T>(internal val data: T) : Response<T>()
 
     /**
-     * Ошибка загрузки данных.
+     * Data loading error.
      *
-     * @param error ошибка, полученная при загрузке данных
+     * @param error error receiving if request is failure
      */
     data class Error(internal val error: Throwable) : Response<Nothing>()
 
     /**
-     * Выполняется ли запрос в данный момент?
+     * Was request started?
      */
     val isLoading: Boolean
         get() = this is Loading
 
     /**
-     * Выполнился ли запрос успешно?
+     * Was request successful?
      */
     val isSuccess: Boolean
         get() = this is Success || this is Empty
 
     /**
-     * Выполнился ли запрос с ошибкой?
+     * Was request ended with error?
      */
     val isError: Boolean
         get() = this is Error
 
     /**
-     * @return данные из ответа от сервера или exception, если запрос выполнился неуспешно, либо данные отсутствуют.
+     * @return data from response or exception if request is failure or data is empty
      */
     fun getData(): T =
         try {
@@ -74,12 +74,12 @@ sealed class Response<out T> {
         }
 
     /**
-     * @return данные из ответа от сервера или null, если запрос выполнился неуспешно, либо данные отсутствуют.
+     * @return data from response or null if request is failure or data is empty
      */
     fun getDataOrNull(): T? = (this as? Success)?.data
 
     /**
-     * @return ошибка, полученная при загрузке данных или exception, если запрос выполнился успешно и ошибка отсутствует.
+     * @return error received while data loading or exception if request is successful
      */
     fun getError(): Throwable =
         try {
@@ -89,7 +89,7 @@ sealed class Response<out T> {
         }
 
     /**
-     * @return ошибка, полученная при загрузке данных или null, если запрос выполнился успешно и ошибка отсутствует.
+     * @return error received while data loading or null if request is successful
      */
     fun getErrorOrNull(): Throwable? = (this as? Error)?.error
 }
