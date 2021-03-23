@@ -152,7 +152,7 @@ class FlowResponseTest {
             socketPolicy = DISCONNECT_AFTER_REQUEST
         )
         val error: Throwable = responseStates[1].getError()
-        assertEquals(IOException::class.java, error::class.java)
+        assertTrue { error is IOException }
     }
 
     private fun getResponseStates(

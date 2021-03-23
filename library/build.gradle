@@ -16,6 +16,13 @@ compileTestKotlin {
     }
 }
 
+test {
+    testLogging {
+        showStandardStreams = true
+    }
+    useJUnitPlatform()
+}
+
 dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_v"
     implementation "com.squareup.okhttp3:okhttp:$okhttp_v"
