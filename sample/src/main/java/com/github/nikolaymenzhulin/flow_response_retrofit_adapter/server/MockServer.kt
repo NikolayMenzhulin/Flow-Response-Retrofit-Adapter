@@ -1,6 +1,6 @@
 package com.github.nikolaymenzhulin.flow_response_retrofit_adapter.server
 
-import com.github.nikolaymenzhulin.flow_response_retrofit_adapter.adapter.ResponseCallAdapterFactory
+import com.github.nikolaymenzhulin.flow_response_retrofit_adapter.adapter.FlowResponseCallAdapterFactory
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.withContext
 import okhttp3.mockwebserver.MockResponse
@@ -24,7 +24,7 @@ object MockServer {
             retrofit =
                 Retrofit.Builder()
                     .baseUrl(server.url("/"))
-                    .addCallAdapterFactory(ResponseCallAdapterFactory())
+                    .addCallAdapterFactory(FlowResponseCallAdapterFactory())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
         }

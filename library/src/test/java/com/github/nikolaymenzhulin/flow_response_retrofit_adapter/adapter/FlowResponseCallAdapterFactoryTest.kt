@@ -27,7 +27,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.reflect.Type
 
-class ResponseCallAdapterFactoryTest {
+class FlowResponseCallAdapterFactoryTest {
 
     private companion object {
 
@@ -37,14 +37,14 @@ class ResponseCallAdapterFactoryTest {
     private lateinit var retrofit: Retrofit
 
     private val server = MockWebServer()
-    private val factory = ResponseCallAdapterFactory()
+    private val factory = FlowResponseCallAdapterFactory()
 
     @BeforeEach
     fun setUp() {
         retrofit =
             Retrofit.Builder()
                 .baseUrl(server.url("/"))
-                .addCallAdapterFactory(ResponseCallAdapterFactory())
+                .addCallAdapterFactory(FlowResponseCallAdapterFactory())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
     }

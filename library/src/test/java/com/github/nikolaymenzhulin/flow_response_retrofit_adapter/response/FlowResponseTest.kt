@@ -15,7 +15,7 @@
 */
 package com.github.nikolaymenzhulin.flow_response_retrofit_adapter.response
 
-import com.github.nikolaymenzhulin.flow_response_retrofit_adapter.adapter.ResponseCallAdapterFactory
+import com.github.nikolaymenzhulin.flow_response_retrofit_adapter.adapter.FlowResponseCallAdapterFactory
 import com.github.nikolaymenzhulin.flow_response_retrofit_adapter.network.TestService
 import com.github.nikolaymenzhulin.flow_response_retrofit_adapter.network.response.TestResponse
 import com.github.nikolaymenzhulin.flow_response_retrofit_adapter.network.server.enqueueResponse
@@ -53,7 +53,7 @@ class FlowResponseTest {
         server = MockWebServer()
         Retrofit.Builder()
             .baseUrl(server.url("/"))
-            .addCallAdapterFactory(ResponseCallAdapterFactory())
+            .addCallAdapterFactory(FlowResponseCallAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .apply { testService = create() }

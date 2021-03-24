@@ -21,7 +21,7 @@ import retrofit2.*
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
 
-class ResponseCallAdapterFactory : CallAdapter.Factory() {
+class FlowResponseCallAdapterFactory : CallAdapter.Factory() {
 
     override fun get(returnType: Type, annotations: Array<Annotation>, retrofit: Retrofit): CallAdapter<*, *>? =
         when {
