@@ -29,18 +29,18 @@ class FlowResponseCallAdapterFactory : CallAdapter.Factory() {
                 null
             }
             returnType !is ParameterizedType -> {
-                ResponseCallAdapter<Nothing>(Nothing::class.java)
+                FlowResponseCallAdapter<Nothing>(Nothing::class.java)
             }
             else -> {
                 val flowResponseInnerType: Type = getParameterUpperBound(0, returnType)
-                ResponseCallAdapter<Any?>(flowResponseInnerType)
+                FlowResponseCallAdapter<Any?>(flowResponseInnerType)
             }
         }
 
     private fun Type.isFlowResponse(): Boolean = getRawType(this) == FlowResponse::class.java
 }
 
-private class ResponseCallAdapter<T>(private val type: Type) : CallAdapter<T, FlowResponse<T>> {
+private class FlowResponseCallAdapter<T>(private val type: Type) : CallAdapter<T, FlowResponse<T>> {
 
     override fun responseType(): Type = type
 
