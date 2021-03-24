@@ -15,7 +15,7 @@ publishing {
             pom {
                 groupId = group_id
                 artifactId = artifact_id
-                version = library_version
+                version = System.getenv('RELEASE_VERSION')
 
                 name = library_name
                 description = library_description

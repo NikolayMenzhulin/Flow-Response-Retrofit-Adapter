@@ -2,7 +2,6 @@ ext {
     // Artifact configuration
     group_id = 'com.github.nikolaymenzhulin'
     artifact_id = 'flow-response-retrofit-adapter'
-    library_version = '1.0.0'
 
     // POM configuration
     library_name = 'Flow Response Retrofit Adapter'
