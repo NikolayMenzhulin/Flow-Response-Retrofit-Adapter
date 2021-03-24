@@ -5,7 +5,7 @@ ext {
 
     // POM configuration
     library_name = 'Flow Response Retrofit Adapter'
-    library_description = 'A small library containing a wrapper over network requests implemented using Kotlin Coroutines Flow and an adapter that allows this wrapper to be used along with the Retrofit 2 library.'
+    library_description = 'A small library containing a wrapper over network requests implemented using Kotlin Flow and an adapter that allows this wrapper to be used along with the Retrofit 2 library.'
     library_url = 'https://github.com/NikolayMenzhulin/Flow-Response-Retrofit-Adapter'
 
     using_license_name = 'The Apache License, Version 2.0'
