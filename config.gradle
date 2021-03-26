@@ -11,4 +11,8 @@ ext {
     // Dependencies
     retrofit_v = '2.9.0'
     okhttp_v = "4.9.1"
+    coroutines_core_v = "1.4.3"
+
+    // Test dependencies
+    junit_v = "5.7.1"
 }
