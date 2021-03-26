@@ -24,6 +24,8 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
 
     private val networkServiceRepository = NetworkServiceRepository()
 
+    private var requestJob: Job? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initViews()
@@ -49,50 +51,44 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
         lifecycleScope.launch { MockServer.initRetrofit() }
     }
 
-    private var job: Job? = null
-
     private fun successResponseWithResult() {
         MockServer.enqueueResponse(responseCode = 200, responseBody = SUCCESS_RESPONSE_JSON)
-        job = networkServiceRepository.successResponseWithResult()
-            .handleErrors()
+        requestJob = networkServiceRepository.successResponseWithResult()
             .onEach { state ->
                 setLoadingState(state.isLoading)
-                when {
-                    state.isLoading -> return@onEach
-                    state.isSuccess -> Toast.makeText(this, state.getData().result, LENGTH_SHORT).show()
-                }
-            }.launchIn()
+                if (state.isSuccess && !state.isEmpty) showToast(state.getData().result)
+            }
+            .handleErrors()
+            .launchIn()
     }
 
     private fun successResponseWithoutResult() {
         MockServer.enqueueResponse(responseCode = 204)
-        job = networkServiceRepository.successResponseWithoutResult()
-            .handleErrors()
+        requestJob = networkServiceRepository.successResponseWithoutResult()
             .onEach { state ->
                 setLoadingState(state.isLoading)
-                when {
-                    state.isLoading -> return@onEach
-                    state.isSuccess -> Toast.makeText(this, "Success!", LENGTH_SHORT).show()
-                }
-            }.launchIn()
+                if (state.isSuccess) showToast("Success!")
+            }
+            .handleErrors()
+            .launchIn()
     }
 
     private fun errorResponse() {
         MockServer.enqueueResponse(responseCode = 500, responseBody = ERROR_RESPONSE_JSON)
-        job = networkServiceRepository.errorResponse()
-            .handleErrors()
+        requestJob = networkServiceRepository.errorResponse()
             .onEach { state ->
                 setLoadingState(state.isLoading)
                 when {
-                    state.isLoading -> return@onEach
-                    state.isSuccess -> Toast.makeText(this, state.getData().result, LENGTH_SHORT).show()
-                    state.isError -> Toast.makeText(this, "See error in Logcat.", LENGTH_SHORT).show()
+                    state.isSuccess && !state.isEmpty -> showToast(state.getData().result)
+                    state.isError -> showToast("See error in Logcat.")
                 }
-            }.launchIn()
+            }
+            .handleErrors()
+            .launchIn()
     }
 
     private fun cancelRequest() {
-        job?.apply {
+        requestJob?.apply {
             cancel()
             setLoadingState(isLoading = false)
         }
@@ -102,5 +98,9 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
         successResponseWithResultBtn.isEnabled = !isLoading
         successResponseWithoutResultBtn.isEnabled = !isLoading
         errorResponseBtn.isEnabled = !isLoading
+    }
+
+    private fun showToast(text: String) {
+        Toast.makeText(this, text, LENGTH_SHORT).show()
     }
 }

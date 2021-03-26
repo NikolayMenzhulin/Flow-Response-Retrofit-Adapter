@@ -16,7 +16,7 @@
 package com.github.nikolaymenzhulin.flow_response_retrofit_adapter.response
 
 /**
- * Abstract model of server's response.
+ * Abstract model of response from some data source.
  */
 sealed class Response<out T> {
 
@@ -27,12 +27,12 @@ sealed class Response<out T> {
     object Loading : Response<Nothing>()
 
     /**
-     * Successful response from server without data.
+     * Successful response from data source without data.
      */
     object Empty : Response<Nothing>()
 
     /**
-     * Successful response from server with data.
+     * Successful response from data source with data.
      *
      * @param data data from response
      */
@@ -50,6 +50,12 @@ sealed class Response<out T> {
      */
     val isLoading: Boolean
         get() = this is Loading
+
+    /**
+     * Is response data empty?
+     */
+    val isEmpty: Boolean
+        get() = this is Empty
 
     /**
      * Was request successful?
