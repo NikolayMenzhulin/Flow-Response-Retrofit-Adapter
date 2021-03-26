@@ -94,7 +94,7 @@ class FlowResponseTest {
     }
 
     @Test
-    fun `Check second response state is Success or Error`() {
+    fun `Check second response state is Success or Empty or Error`() {
 
         fun checkSuccessResponseWithResult() {
             val responseStates = getResponseStates(responseCode = 200, responseBody = SUCCESS_RESPONSE_JSON)
@@ -103,7 +103,7 @@ class FlowResponseTest {
 
         fun checkSuccessResponseWithoutResult() {
             val responseStates = getResponseStates(responseCode = 204)
-            assertTrue { responseStates[1].isSuccess }
+            assertTrue { responseStates[1].isSuccess && responseStates[1].isEmpty }
         }
 
         fun checkErrorResponse() {
