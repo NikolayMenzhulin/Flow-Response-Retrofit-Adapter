@@ -52,6 +52,12 @@ sealed class Response<out T> {
         get() = this is Loading
 
     /**
+     * Is response data empty?
+     */
+    val isEmpty: Boolean
+        get() = this is Empty
+
+    /**
      * Was request successful?
      */
     val isSuccess: Boolean
