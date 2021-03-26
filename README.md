@@ -35,8 +35,8 @@ someRetrofitService.someNetworkRequest()
                 // Logic of changing loading state or something else.
             }
             state.isSuccess -> {
-                val data: SomeNetworkRequestResult = state.getData()
-                if (data.isNotEmpty()) {
+                if (!state.isEmpty) {
+                    val data: SomeNetworkRequestResult = state.getData()
                     // Logic of reaction to success response and using data from it...
                 } else {
                     // or reaction on empty data.
