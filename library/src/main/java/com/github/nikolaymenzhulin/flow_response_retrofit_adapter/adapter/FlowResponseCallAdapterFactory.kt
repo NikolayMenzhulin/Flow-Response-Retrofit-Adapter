@@ -57,7 +57,13 @@ private class FlowResponseCallback<T>(private val flowResponse: FlowResponse<T>)
     override fun onResponse(call: Call<T>, retrofitResponse: RetrofitResponse<T>) {
         val response: Response<T> =
             if (retrofitResponse.isSuccessful) {
-                retrofitResponse.body()?.let { Response.Success(data = it) } ?: Response.Empty
+                val body: T? = retrofitResponse.body()
+                val isEmptyList: Boolean = (body as? List<*>)?.isEmpty() ?: false
+                if (body != null && !isEmptyList) {
+                    Response.Success(data = body)
+                } else {
+                    Response.Empty
+                }
             } else {
                 Response.Error(error = HttpException(retrofitResponse))
             }
