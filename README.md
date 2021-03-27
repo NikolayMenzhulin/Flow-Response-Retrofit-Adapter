@@ -66,7 +66,7 @@ allprojects {
 **Step 2.** Add the dependency:
 ```groovy
 dependencies {
-    implementation 'com.github.nikolaymenzhulin:flow-response-retrofit-adapter:set_latest_version'
+    implementation 'com.github.nikolaymenzhulin:flow-response-retrofit-adapter:1.1.1'
 }
 ```
 
