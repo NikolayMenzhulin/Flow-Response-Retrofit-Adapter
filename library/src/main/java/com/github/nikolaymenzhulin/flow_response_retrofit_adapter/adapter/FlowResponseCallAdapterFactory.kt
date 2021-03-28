@@ -15,8 +15,10 @@
 */
 package com.github.nikolaymenzhulin.flow_response_retrofit_adapter.adapter
 
-import com.github.nikolaymenzhulin.flow_response_retrofit_adapter.response.FlowResponse
 import com.github.nikolaymenzhulin.flow_response_retrofit_adapter.response.Response
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.take
 import retrofit2.*
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
@@ -25,34 +27,46 @@ class FlowResponseCallAdapterFactory : CallAdapter.Factory() {
 
     override fun get(returnType: Type, annotations: Array<Annotation>, retrofit: Retrofit): CallAdapter<*, *>? =
         when {
-            !returnType.isFlowResponse() -> {
+            !returnType.isFlowWithResponseInside() -> {
                 null
             }
-            returnType !is ParameterizedType -> {
+            !returnType.isResponseParametrized() -> {
                 FlowResponseCallAdapter<Nothing>(Nothing::class.java)
             }
             else -> {
-                val flowResponseInnerType: Type = getParameterUpperBound(0, returnType)
+                val flowResponseInnerType: Type = returnType.getResponseInnerType()
                 FlowResponseCallAdapter<Any?>(flowResponseInnerType)
             }
         }
 
-    private fun Type.isFlowResponse(): Boolean = getRawType(this) == FlowResponse::class.java
+    private fun Type.isFlowWithResponseInside(): Boolean =
+        if (getRawType(this) == Flow::class.java && this is ParameterizedType) {
+            val flowInnerType: Type = getParameterUpperBound(0, this)
+            getRawType(flowInnerType) == Response::class.java
+        } else {
+            false
+        }
+
+    private fun Type.isResponseParametrized(): Boolean =
+        getParameterUpperBound(0, this as ParameterizedType) is ParameterizedType
+
+    private fun Type.getResponseInnerType(): Type =
+        getParameterUpperBound(0, getParameterUpperBound(0, this as ParameterizedType) as ParameterizedType)
 }
 
-private class FlowResponseCallAdapter<T>(private val type: Type) : CallAdapter<T, FlowResponse<T>> {
+private class FlowResponseCallAdapter<T>(private val type: Type) : CallAdapter<T, Flow<Response<T>>> {
 
     override fun responseType(): Type = type
 
-    override fun adapt(call: Call<T>): FlowResponse<T> {
-        val flowResponse: FlowResponse<T> = FlowResponse()
-        flowResponse.responseState.tryEmit(Response.Loading)
-        call.enqueue(FlowResponseCallback(flowResponse))
-        return flowResponse
+    override fun adapt(call: Call<T>): Flow<Response<T>> {
+        val responseState: MutableSharedFlow<Response<T>> = MutableSharedFlow(replay = 2)
+        responseState.tryEmit(Response.Loading)
+        call.enqueue(FlowResponseCallback(responseState))
+        return responseState.take(2)
     }
 }
 
-private class FlowResponseCallback<T>(private val flowResponse: FlowResponse<T>) : Callback<T> {
+private class FlowResponseCallback<T>(private val responseState: MutableSharedFlow<Response<T>>) : Callback<T> {
 
     override fun onResponse(call: Call<T>, retrofitResponse: RetrofitResponse<T>) {
         val response: Response<T> =
@@ -67,12 +81,12 @@ private class FlowResponseCallback<T>(private val flowResponse: FlowResponse<T>)
             } else {
                 Response.Error(error = HttpException(retrofitResponse))
             }
-        flowResponse.responseState.tryEmit(response)
+        responseState.tryEmit(response)
     }
 
     override fun onFailure(call: Call<T>, throwable: Throwable) {
         val response: Response<T> = Response.Error(error = throwable)
-        flowResponse.responseState.tryEmit(response)
+        responseState.tryEmit(response)
     }
 }
 
