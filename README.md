@@ -3,7 +3,7 @@
 A small library containing a wrapper over network requests implemented using Kotlin Flow  
 and an adapter that allows this wrapper to be used along with the Retrofit 2 library.
 
-[![build](https://github.com/NikolayMenzhulin/Flow-Response-Retrofit-Adapter/actions/workflows/ci-build.yml/badge.svg)](https://github.com/NikolayMenzhulin/Flow-Response-Retrofit-Adapter/actions/workflows/ci-build.yml) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.nikolaymenzhulin/flow-response-retrofit-adapter/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.nikolaymenzhulin/flow-response-retrofit-adapter)
+[![build](https://github.com/NikolayMenzhulin/Flow-Response-Retrofit-Adapter/actions/workflows/ci-build.yml/badge.svg?)](https://github.com/NikolayMenzhulin/Flow-Response-Retrofit-Adapter/actions/workflows/ci-build.yml) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.nikolaymenzhulin/flow-response-retrofit-adapter/badge.svg?)](https://maven-badges.herokuapp.com/maven-central/com.github.nikolaymenzhulin/flow-response-retrofit-adapter)
 [![License](https://img.shields.io/badge/license-Apache%202.0-dark.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 ## Usage
 
