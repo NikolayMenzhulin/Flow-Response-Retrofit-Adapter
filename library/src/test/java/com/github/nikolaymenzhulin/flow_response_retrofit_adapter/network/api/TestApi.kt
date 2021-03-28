@@ -13,18 +13,25 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 */
-package com.github.nikolaymenzhulin.flow_response_retrofit_adapter.network
+package com.github.nikolaymenzhulin.flow_response_retrofit_adapter.network.api
 
 import com.github.nikolaymenzhulin.flow_response_retrofit_adapter.network.response.TestResponse
-import com.github.nikolaymenzhulin.flow_response_retrofit_adapter.response.FlowEmptyResponse
-import com.github.nikolaymenzhulin.flow_response_retrofit_adapter.response.FlowResponse
+import com.github.nikolaymenzhulin.flow_response_retrofit_adapter.typealiases.FlowResponse
+import com.github.nikolaymenzhulin.flow_response_retrofit_adapter.typealiases.FlowResponseEmpty
+import okhttp3.ResponseBody
 import retrofit2.http.GET
 
-interface TestService {
+interface TestApi {
+
+    @GET("/")
+    fun responseWithResponseBody(): FlowResponse<ResponseBody>
 
     @GET("/")
     fun responseWithData(): FlowResponse<TestResponse>
 
     @GET("/")
-    fun responseWithoutData(): FlowEmptyResponse
+    fun responseWithDataList(): FlowResponse<List<TestResponse>>
+
+    @GET("/")
+    fun responseWithoutData(): FlowResponseEmpty
 }

@@ -13,12 +13,17 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 */
-package com.github.nikolaymenzhulin.flow_response_retrofit_adapter.network.response
+package com.github.nikolaymenzhulin.flow_response_retrofit_adapter.typealiases
 
-import com.google.gson.annotations.SerializedName
+import com.github.nikolaymenzhulin.flow_response_retrofit_adapter.response.Response
+import kotlinx.coroutines.flow.Flow
 
-data class TestResponse(
-    @SerializedName("mockString") private val mockString: String,
-    @SerializedName("mockInt") private val mockInt: Int,
-    @SerializedName("mockBoolean") private val mockBoolean: Boolean
-)
+/**
+ * An alias for reducing nesting of generic types.
+ */
+typealias FlowResponse<T> = Flow<Response<T>>
+
+/**
+ * Alias for requests that not contain data or contain, but they isn't necessary and might be ignored.
+ */
+typealias FlowResponseEmpty = Flow<Response<Nothing>>
