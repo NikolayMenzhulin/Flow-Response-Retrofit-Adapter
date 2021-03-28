@@ -15,7 +15,7 @@ Retrofit.Builder()
     .build()
 ```
 
-In your Retrofit interfaces wrap results of your requests in [FlowResponse](https://github.com/NikolayMenzhulin/Flow-Response-Retrofit-Adapter/blob/main/library/src/main/java/com/github/nikolaymenzhulin/flow_response_retrofit_adapter/response/FlowResponse.kt):
+In your Retrofit interfaces wrap results of your requests in [FlowResponse](https://github.com/NikolayMenzhulin/Flow-Response-Retrofit-Adapter/blob/main/library/src/main/java/com/github/nikolaymenzhulin/flow_response_retrofit_adapter/typealiases/ResponseTypealiases.kt):
 ```kotlin
 interface SomeRetrofitService {
     
