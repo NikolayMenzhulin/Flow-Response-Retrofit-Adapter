@@ -2,7 +2,7 @@ ext {
     // App configuration
     version_name = "1.0.0"
     version_code = 1
-    application_id = "by.nikolay_menzhulin.retrofit_response_adapter"
+    application_id = "com.github.nikolaymenzhulin.flow_response_retrofit_adapter"
 
     // Android configuration
     build_tools_v = "29.0.3"
