@@ -1,7 +1,7 @@
 # Flow-Response-Retrofit-Adapter
 
-A small library containing a wrapper over network requests implemented using Kotlin Flow  
-and an adapter that allows this wrapper to be used along with the Retrofit 2 library.
+The small library containing the wrapper over network requests implemented using Kotlin Flow  
+and the adapter that allows this wrapper to be used along with Retrofit 2.
 
 [![build](https://github.com/NikolayMenzhulin/Flow-Response-Retrofit-Adapter/actions/workflows/ci-build.yml/badge.svg?)](https://github.com/NikolayMenzhulin/Flow-Response-Retrofit-Adapter/actions/workflows/ci-build.yml) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.nikolaymenzhulin/flow-response-retrofit-adapter/badge.svg?)](https://maven-badges.herokuapp.com/maven-central/com.github.nikolaymenzhulin/flow-response-retrofit-adapter)
 [![License](https://img.shields.io/badge/license-Apache%202.0-dark.svg)](http://www.apache.org/licenses/LICENSE-2.0)
@@ -10,7 +10,7 @@ and an adapter that allows this wrapper to be used along with the Retrofit 2 lib
 Add [FlowResponseCallAdapterFactory](https://github.com/NikolayMenzhulin/Flow-Response-Retrofit-Adapter/blob/main/library/src/main/java/com/github/nikolaymenzhulin/flow_response_retrofit_adapter/adapter/FlowResponseCallAdapterFactory.kt) to your Retrofit configuration:
 ```kotlin
 Retrofit.Builder()
-    // Some other configuration.
+    // Some another configuration.
     .addCallAdapterFactory(FlowResponseCallAdapterFactory())
     .build()
 ```
@@ -32,14 +32,14 @@ someRetrofitService.someNetworkRequest()
     .onEach { state ->
         when {
             state.isLoading -> {
-                // Logic of changing loading state or something else.
+                // Logic of changing the loading state or something else.
             }
             state.isSuccess -> {
                 if (!state.isEmpty) {
                     val data: SomeNetworkRequestResult = state.getData()
-                    // Logic of reaction to success response and using data from it...
+                    // Logic of reaction to the success response and using the data from it...
                 } else {
-                    // or reaction on empty data.
+                    // or reaction on the empty data.
                 }
             }
             state.isError -> {
@@ -50,7 +50,7 @@ someRetrofitService.someNetworkRequest()
     }.launchIn(coroutineScope)
 ```
 
-More information of usage in [sample](https://github.com/NikolayMenzhulin/Flow-Response-Retrofit-Adapter/tree/main/sample).
+More information of usage into the [sample](https://github.com/NikolayMenzhulin/Flow-Response-Retrofit-Adapter/tree/main/sample).
 
 ## Download
 
