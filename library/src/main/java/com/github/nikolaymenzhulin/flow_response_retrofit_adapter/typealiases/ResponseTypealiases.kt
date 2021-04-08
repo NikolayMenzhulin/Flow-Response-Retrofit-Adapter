@@ -19,11 +19,11 @@ import com.github.nikolaymenzhulin.flow_response_retrofit_adapter.response.Respo
 import kotlinx.coroutines.flow.Flow
 
 /**
- * An alias for reducing nesting of generic types.
+ * The alias for reducing nesting of generic types.
  */
 typealias FlowResponse<T> = Flow<Response<T>>
 
 /**
- * Alias for requests that not contain data or contain, but they isn't necessary and might be ignored.
+ * The alias for requests that not contain data or contain, but they isn't necessary and might be ignored.
  */
 typealias FlowResponseEmpty = Flow<Response<Nothing>>

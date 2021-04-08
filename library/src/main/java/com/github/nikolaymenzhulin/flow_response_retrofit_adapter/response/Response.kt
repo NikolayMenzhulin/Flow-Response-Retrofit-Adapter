@@ -16,86 +16,86 @@
 package com.github.nikolaymenzhulin.flow_response_retrofit_adapter.response
 
 /**
- * Abstract model of response from some data source.
+ * The abstract model of a response from a data source.
  */
 sealed class Response<out T> {
 
     /**
-     * Data loading.
+     * The data loading state.
      * Data receiving starts from this state.
      */
     object Loading : Response<Nothing>()
 
     /**
-     * Successful response from data source without data.
+     * The successful response state from a data source without data.
      */
     object Empty : Response<Nothing>()
 
     /**
-     * Successful response from data source with data.
+     * The successful response state from a data source with data.
      *
-     * @param data data from response
+     * @param data the data from the response
      */
     data class Success<T>(internal val data: T) : Response<T>()
 
     /**
-     * Data loading error.
+     * The data loading error.
      *
-     * @param error error receiving if request is failure
+     * @param error the error receiving if the request is failure
      */
     data class Error(internal val error: Throwable) : Response<Nothing>()
 
     /**
-     * Was request started?
+     * Was the request started?
      */
     val isLoading: Boolean
         get() = this is Loading
 
     /**
-     * Is response data empty?
+     * Is the response data empty?
      */
     val isEmpty: Boolean
         get() = this is Empty
 
     /**
-     * Was request successful?
+     * Was the request successful?
      */
     val isSuccess: Boolean
         get() = this is Success || this is Empty
 
     /**
-     * Was request ended with error?
+     * Was the request ended with an error?
      */
     val isError: Boolean
         get() = this is Error
 
     /**
-     * @return data from response or exception if request is failure or data is empty
+     * @return the data from the response or an error if the request is failure or the data is empty
      */
     fun getData(): T =
         try {
             (this as Success).data
         } catch (e: ClassCastException) {
-            throw IllegalStateException("Response without data")
+            throw IllegalStateException("The response without data")
         }
 
     /**
-     * @return data from response or null if request is failure or data is empty
+     * @return the data from the response or null if the request is failure or the data is empty
      */
     fun getDataOrNull(): T? = (this as? Success)?.data
 
     /**
-     * @return error received while data loading or exception if request is successful
+     * @return the error received while the data loading or an exception if the request is successful
      */
     fun getError(): Throwable =
         try {
             (this as Error).error
         } catch (e: ClassCastException) {
-            throw IllegalStateException("Response without error")
+            throw IllegalStateException("The response without an error")
         }
 
     /**
-     * @return error received while data loading or null if request is successful
+     * @return the error received while the data loading or null if the request is successful
      */
     fun getErrorOrNull(): Throwable? = (this as? Error)?.error
 }
